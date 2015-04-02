@@ -15,10 +15,10 @@
 <meta property="og:description" content="最近两个月跟着斯坦福大学白胡子老头的公开课学习了一下swift语言下的ios应用开发，作为实践，我计划开发自己的第一款App：网络视频播放器。
 产品设计什么，就你一个搬砖的还要产品设计？好好，没有产品设计那我就“借鉴”别人的总可以吧。我想我的App应该是这样的：
 为啥要“借鉴”sohu的界面呢？因为他们的节目呈现方式和我所能使用的后台数据简直太吻合了，我能够使用的后台数据组织方式是这样的：整个视频">
-<meta property="og:image" content="http://40.media.tumblr.com/aa5fc8be8df388daca63069870805be9/tumblr_nm66fhmKtR1urkzg7o1_1280.png">
-<meta property="og:image" content="http://41.media.tumblr.com/7a17452cc61870c86ebd62c0f65e8d82/tumblr_nm66fhmKtR1urkzg7o2_1280.png">
+<meta property="og:image" content="https://41.media.tumblr.com/7a17452cc61870c86ebd62c0f65e8d82/tumblr_nm66fhmKtR1urkzg7o2_250.png">
+<meta property="og:image" content="http://41.media.tumblr.com/7a17452cc61870c86ebd62c0f65e8d82/tumblr_nm66fhmKtR1urkzg7o2_250.png">
 <meta property="og:image" content="https://36.media.tumblr.com/0b232366cfa8028d9d7f72e5295de441/tumblr_nm66fhmKtR1urkzg7o6_250.png">
-<meta property="og:image" content="https://40.media.tumblr.com/3832efd28d2101ca4e0821c53aa51677/tumblr_nm66fhmKtR1urkzg7o4_1280.png">
+<meta property="og:image" content="https://40.media.tumblr.com/3832efd28d2101ca4e0821c53aa51677/tumblr_nm66fhmKtR1urkzg7o4_250.png">
 <meta property="og:image" content="http://40.media.tumblr.com/3f2ae5b7ae1c75059a003d77b886e7d2/tumblr_nm66fhmKtR1urkzg7o3_400.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我想写一个网络视频播放器">
@@ -97,7 +97,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>最近两个月跟着斯坦福大学白胡子老头的公开课学习了一下swift语言下的ios应用开发，作为实践，我计划开发自己的第一款App：网络视频播放器。</p>
-<h1 id="产品设计">产品设计</h1><p>什么，就你一个搬砖的还要产品设计？好好，没有产品设计那我就“借鉴”别人的总可以吧。<br>我想我的App应该是这样的：<br><img src="http://40.media.tumblr.com/aa5fc8be8df388daca63069870805be9/tumblr_nm66fhmKtR1urkzg7o1_1280.png" alt="首页"><br><img src="http://41.media.tumblr.com/7a17452cc61870c86ebd62c0f65e8d82/tumblr_nm66fhmKtR1urkzg7o2_1280.png" alt="片库页"><br><img src="https://36.media.tumblr.com/0b232366cfa8028d9d7f72e5295de441/tumblr_nm66fhmKtR1urkzg7o6_250.png" alt="栏目展示页面"><br><img src="https://40.media.tumblr.com/3832efd28d2101ca4e0821c53aa51677/tumblr_nm66fhmKtR1urkzg7o4_1280.png" alt="详情和播放"></p>
+<h1 id="产品设计">产品设计</h1><p>什么，就你一个搬砖的还要产品设计？好好，没有产品设计那我就“借鉴”别人的总可以吧。<br>我想我的App应该是这样的：<br><img src="https://41.media.tumblr.com/7a17452cc61870c86ebd62c0f65e8d82/tumblr_nm66fhmKtR1urkzg7o2_250.png" alt="首页"><img src="http://41.media.tumblr.com/7a17452cc61870c86ebd62c0f65e8d82/tumblr_nm66fhmKtR1urkzg7o2_250.png" alt="片库页"><br><img src="https://36.media.tumblr.com/0b232366cfa8028d9d7f72e5295de441/tumblr_nm66fhmKtR1urkzg7o6_250.png" alt="栏目展示页面"><img src="https://40.media.tumblr.com/3832efd28d2101ca4e0821c53aa51677/tumblr_nm66fhmKtR1urkzg7o4_250.png" alt="详情和播放"></p>
 <p>为啥要“借鉴”sohu的界面呢？因为他们的节目呈现方式和我所能使用的后台数据简直太吻合了，我能够使用的后台数据组织方式是这样的：<br><img src="http://40.media.tumblr.com/3f2ae5b7ae1c75059a003d77b886e7d2/tumblr_nm66fhmKtR1urkzg7o3_400.png" alt="节目数据组织结构"><br>整个视频数据总站点由若干个一级栏目组成，每一个一级栏目包含若干个二级栏目，二级栏目下有若干节目编排。数据组织就是这样的一个三层的树形组织。</p>
 <h1 id="数据获取、解析">数据获取、解析</h1><h2 id="解析">解析</h2><p>好了，有了目标，有了数据，第一步就是把数据解析出来，EPG返回给app应用的数据是json格式。ios中对json数据的解析不入Andoid那么便捷，这里json数据我直接使用的第三方库<a href="https://github.com/daltoniam/JSONJoy-Swift" target="_blank" rel="external">JsonJoy</a>。github上swift版本的json解析库非常多，我试用下来觉得这一个我用着符合我的习惯。</p>
 <p>使用JsonJoy解析json时，数据对象需要实现JSONJoy的protocol</p>
