@@ -5,15 +5,15 @@
   
   <title>开源项目AndroidEventBus代码学习笔记 | 唐僧De涂鸦</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="AndroiEventBus一个Android平台的事件总线框架, 它简化了Activity、Fragment、Service等组件之间的交互，很大程度上降低了它们之间的耦合，使得我们的代码更加简洁，耦合性更低，提升我们的代码质量。源码地址。更详细的介绍参考作者的介绍正如作者所说，“greenrobot的EventBus，AndroidEventBus用户使用更加灵活”。所以，今天就来学习一下他的">
+  <meta name="description" content="AndroiEventBus一个Android平台的事件总线框架, 它简化了Activity、Fragment、Service等组件之间的交互，很大程度上降低了它们之间的耦合，使得我们的代码更加简洁，耦合性更低，提升我们的代码质量。项目源码在此。更详细的介绍参考作者的介绍。正如作者所说，“与greenrobot的EventBus相比，AndroidEventBus用户使用更加灵活”。所以，今天就来">
 <meta property="og:type" content="article">
 <meta property="og:title" content="开源项目AndroidEventBus代码学习笔记">
 <meta property="og:url" content="http://tangsirongit.github.io/2015/04/22/开源项目AndroidEventBus代码学习笔记/index.html">
 <meta property="og:site_name" content="唐僧De涂鸦">
-<meta property="og:description" content="AndroiEventBus一个Android平台的事件总线框架, 它简化了Activity、Fragment、Service等组件之间的交互，很大程度上降低了它们之间的耦合，使得我们的代码更加简洁，耦合性更低，提升我们的代码质量。源码地址。更详细的介绍参考作者的介绍正如作者所说，“greenrobot的EventBus，AndroidEventBus用户使用更加灵活”。所以，今天就来学习一下他的">
+<meta property="og:description" content="AndroiEventBus一个Android平台的事件总线框架, 它简化了Activity、Fragment、Service等组件之间的交互，很大程度上降低了它们之间的耦合，使得我们的代码更加简洁，耦合性更低，提升我们的代码质量。项目源码在此。更详细的介绍参考作者的介绍。正如作者所说，“与greenrobot的EventBus相比，AndroidEventBus用户使用更加灵活”。所以，今天就来">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="开源项目AndroidEventBus代码学习笔记">
-<meta name="twitter:description" content="AndroiEventBus一个Android平台的事件总线框架, 它简化了Activity、Fragment、Service等组件之间的交互，很大程度上降低了它们之间的耦合，使得我们的代码更加简洁，耦合性更低，提升我们的代码质量。源码地址。更详细的介绍参考作者的介绍正如作者所说，“greenrobot的EventBus，AndroidEventBus用户使用更加灵活”。所以，今天就来学习一下他的">
+<meta name="twitter:description" content="AndroiEventBus一个Android平台的事件总线框架, 它简化了Activity、Fragment、Service等组件之间的交互，很大程度上降低了它们之间的耦合，使得我们的代码更加简洁，耦合性更低，提升我们的代码质量。项目源码在此。更详细的介绍参考作者的介绍。正如作者所说，“与greenrobot的EventBus相比，AndroidEventBus用户使用更加灵活”。所以，今天就来">
   
     <link rel="alternative" href="/atom.xml" title="唐僧De涂鸦" type="application/atom+xml">
   
@@ -85,8 +85,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>AndroiEventBus一个Android平台的事件总线框架, 它简化了Activity、Fragment、Service等组件之间的交互，很大程度上降低了它们之间的耦合，使得我们的代码更加简洁，耦合性更低，提升我们的代码质量。<a href="https://github.com/bboyfeiyu/AndroidEventBus" target="_blank" rel="external">源码地址</a>。更详细的介绍参考作者的<a href="https://github.com/bboyfeiyu/AndroidEventBus/blob/master/README-ch.md" target="_blank" rel="external">介绍</a>正如作者所说，“greenrobot的EventBus，AndroidEventBus用户使用更加灵活”。所以，今天就来学习一下他的源码。</p>
-<h1 id="注册">注册</h1><p>作者的readme给出了注册实例：</p>
+        <p>AndroiEventBus一个Android平台的事件总线框架, 它简化了Activity、Fragment、Service等组件之间的交互，很大程度上降低了它们之间的耦合，使得我们的代码更加简洁，耦合性更低，提升我们的代码质量。<a href="https://github.com/bboyfeiyu/AndroidEventBus" target="_blank" rel="external">项目源码在此</a>。更详细的介绍参考作者的<a href="https://github.com/bboyfeiyu/AndroidEventBus/blob/master/README-ch.md" target="_blank" rel="external">介绍</a>。正如作者所说，“与greenrobot的EventBus相比，AndroidEventBus用户使用更加灵活”。所以，今天就来学习一下他的源码。</p>
+<h1 id="注册">注册</h1><p>作者在项目的介绍中给出了注册实例：</p>
 <figure class="highlight"><figcaption><span>class YourActivity extends Activity &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;    @Override&#10;    protected void onCreate(Bundle savedInstanceState) &#123;&#10;        super.onCreate(savedInstanceState);&#10;        setContentView(R.layout.main_activity);&#10;        // &#27880;&#20876;&#23545;&#35937;&#10;        EventBus.getDefault().register(this);&#10;    &#125;&#10;&#10;    @Override&#10;    protected void onDestroy() &#123;&#10;        // &#19981;&#35201;&#24536;&#35760;&#27880;&#38144;&#65281;&#65281;&#65281;&#65281;&#10;        EventBus.getDefault().unregister(this);&#10;        super.onDestroy();&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>来看一下EventBus.getDefault().register(this);做了哪些事情，EventBus的register方法源码为：</p>
 <figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">register</span><span class="params">(Object subscriber)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (subscriber == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</span><br><span class="line">            mMethodHunter.findSubcribeMethods(subscriber);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
@@ -99,7 +99,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tangsirongit.github.io/2015/04/22/开源项目AndroidEventBus代码学习笔记/" data-id="ci8sxmf300005mmzv3uw7tkwv" class="article-share-link">Share</a>
+      <a data-url="http://tangsirongit.github.io/2015/04/22/开源项目AndroidEventBus代码学习笔记/" data-id="ci8sxpiaz0005mvzvck2ab9q7" class="article-share-link">Share</a>
       
       
     </footer>
