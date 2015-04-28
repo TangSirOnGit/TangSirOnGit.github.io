@@ -89,14 +89,14 @@
       
         <h1 id="LruCache特点">LruCache特点</h1><p>LruCache是android sdk提供的一种RAM缓存解决方案，<a href="http://developer.android.com/reference/android/util/LruCache.html" target="_blank" rel="external">这里</a>是官方的说明文档。从文档了解到LruCache的主要特点有：</p>
 <ul>
-<li>内部使用一个队列管理数据，最近命中的数据将被移到队列头部</li>
+<li>内部使用一个队列管理数据，最近访问的数据将被移到队列头部</li>
 <li>如果往已满的LruCache里添加数据，队列尾部的数据将被移除</li>
 <li>线程安全</li>
 <li>可自定义cache占用空间的计算方法</li>
 <li>cache中的key和value都不允许null对象<h1 id="内部实现">内部实现</h1>我比较关心的是其内部是怎么实现最近被访问的数据被移动到队列的头部（Each time a value is accessed, it is moved to the head of a queue.）<br>LruCache的内部实现比较简单，整个类包含注释还不到400行。</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> LinkedHashMap&lt;K, V&gt; map;</span><br><span class="line"></span><br><span class="line">    <span class="javadoc">/** Size of this cache in units. Not necessarily the number of elements. */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> maxSize;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> putCount;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> createCount;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> evictionCount;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> hitCount;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> missCount;</span><br></pre></td></tr></table></figure>
-<p>内部由一个LinkedHashMap用来管理数据，其他的几个变量都是用来辅助管理的。接下来一个一个的看对外提供的接口。</p>
+<p>内部由一个LinkedHashMap来管理数据，其他的几个变量都是用来辅助管理的。接下来一个一个的看对外提供的接口。</p>
 <h2 id="构造函数">构造函数</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="javadoc">/**</span><br><span class="line">    *<span class="javadoctag"> @param</span> maxSize for caches that do not override &#123;@link #sizeOf&#125;, this is</span><br><span class="line">    *     the maximum number of entries in the cache. For all other caches,</span><br><span class="line">    *     this is the maximum sum of the sizes of the entries in this cache.</span><br><span class="line">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">LruCache</span><span class="params">(<span class="keyword">int</span> maxSize)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (maxSize &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(“maxSize &lt;= <span class="number">0</span>”);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">this</span>.maxSize = maxSize;</span><br><span class="line">       <span class="keyword">this</span>.map = <span class="keyword">new</span> LinkedHashMap&lt;K, V&gt;(<span class="number">0</span>, <span class="number">0.75f</span>, <span class="keyword">true</span>);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <p>构造函数做了两件事情，初始化maxSize，初始化map对象，LinkedHashMap的构造函数的三个参数的含义：</p>
 <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public LinkedHashMap(int initialCapacity,</span><br><span class="line">             float loadFactor,</span><br><span class="line">             boolean accessOrder)</span><br><span class="line">Constructs <span class="operator">an</span> <span class="constant">empty</span> LinkedHashMap instance <span class="operator">with</span> <span class="operator">the</span> specified initial capacity, <span class="built_in">load</span> factor <span class="operator">and</span> ordering mode.</span><br><span class="line">Parameters:</span><br><span class="line">initialCapacity - <span class="operator">the</span> initial capacity</span><br><span class="line">loadFactor - <span class="operator">the</span> <span class="built_in">load</span> factor</span><br><span class="line">accessOrder - <span class="operator">the</span> ordering mode - <span class="constant">true</span> <span class="keyword">for</span> access-order, <span class="constant">false</span> <span class="keyword">for</span> insertion-order</span><br><span class="line">Throws:</span><br><span class="line">IllegalArgumentException - <span class="keyword">if</span> <span class="operator">the</span> initial capacity is negative <span class="operator">or</span> <span class="operator">the</span> <span class="built_in">load</span> factor is nonpositive</span><br></pre></td></tr></table></figure>
@@ -118,7 +118,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tangsirongit.github.io/2015/04/28/LruCache使用笔记/" data-id="ci91h3yct0000l79k5sgzz3se" class="article-share-link">Share</a>
+      <a data-url="http://tangsirongit.github.io/2015/04/28/LruCache使用笔记/" data-id="ci91hpwp90000na9kcfodllzr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -176,7 +176,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tangsirongit.github.io/2015/04/22/开源项目AndroidEventBus代码学习笔记/" data-id="ci91h3ydj0005l79k7xtr211k" class="article-share-link">Share</a>
+      <a data-url="http://tangsirongit.github.io/2015/04/22/开源项目AndroidEventBus代码学习笔记/" data-id="ci91hpwpz0005na9k60pgoncu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -234,7 +234,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tangsirongit.github.io/2015/04/22/树莓派交叉编译环境搭建-失败/" data-id="ci91h3ydf0001l79ko7n12m3w" class="article-share-link">Share</a>
+      <a data-url="http://tangsirongit.github.io/2015/04/22/树莓派交叉编译环境搭建-失败/" data-id="ci91hpwpv0001na9k1e6xol3i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -282,7 +282,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tangsirongit.github.io/2015/04/02/我想写一个网络视频播放器/" data-id="ci91h3ydg0002l79kmek9q1y6" class="article-share-link">Share</a>
+      <a data-url="http://tangsirongit.github.io/2015/04/02/我想写一个网络视频播放器/" data-id="ci91hpwpw0002na9kzrkxdrxj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IOS-Swift/">IOS  Swift</a></li></ul>
@@ -331,7 +331,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tangsirongit.github.io/2015/04/01/hello-world/" data-id="ci91h3ydk0006l79krabok82q" class="article-share-link">Share</a>
+      <a data-url="http://tangsirongit.github.io/2015/04/01/hello-world/" data-id="ci91hpwq00006na9kifzli63p" class="article-share-link">Share</a>
       
       
     </footer>
