@@ -87,7 +87,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在<a href="http://tangsirongit.github.io/2015/04/28/LruCache%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" target="_blank" rel="external">LruCache使用笔记</a>里面说道，LreCache内部通过LinkedHashMap管理数据，实现“最近访问的数据被移动到队列的头部”。今天就来看一下LinkedHashMap是怎么实现的。<a href="https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html" target="_blank" rel="external">LinkedHashMap详细说明</a></p>
+        <p>在<a href="http://tangsirongit.github.io/2015/04/28/LruCache%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" target="_blank" rel="external">LruCache使用笔记</a>里面说道，LruCache内部通过LinkedHashMap管理数据，实现“最近访问的数据被移动到队列的头部”。今天就来看一下LinkedHashMap是怎么实现的。<a href="https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html" target="_blank" rel="external">LinkedHashMap详细说明</a></p>
 <h1 id="数据成员">数据成员</h1><p>LinkedHashMap继承于HashMap,有成员变量</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="javadoc">/**</span><br><span class="line">     * A dummy entry in the circular linked list of entries in the map.</span><br><span class="line">     * The first real entry is header.nxt, and the last is header.prv.</span><br><span class="line">     * If the map is empty, header.nxt == header &amp;&amp; header.prv == header.</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">transient</span> LinkedEntry&lt;K, V&gt; header;</span><br><span class="line"></span><br><span class="line">    <span class="javadoc">/**</span><br><span class="line">     * True if access ordered, false if insertion ordered.</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">boolean</span> accessOrder;</span><br></pre></td></tr></table></figure>
 <p>第一个变量header，注释已经做了详细的说明，header就是map中key-value对组成的双向链表中的一个空对象。第一个真实的key-value对<code>header.nxt</code>,最后一个key-value对是<code>header.prv</code>如果<code>header.nxt == header &amp;&amp; header.prv == header</code>那么这个哈希表是空的。第二个成员变量<code>accessOrder</code>就是用来控制双向链表的排序方式的。</p>
@@ -108,7 +108,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tangsirongit.github.io/2015/04/29/LinkedHashMap笔记/" data-id="ci92sb1ec0000kncxklkhf6mb" class="article-share-link">Share</a>
+      <a data-url="http://tangsirongit.github.io/2015/04/29/LinkedHashMap笔记/" data-id="ci92udgy90000micxtthtlxgj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -171,7 +171,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tangsirongit.github.io/2015/04/28/LruCache使用笔记/" data-id="ci92sb1f40007kncxsc28tmy4" class="article-share-link">Share</a>
+      <a data-url="http://tangsirongit.github.io/2015/04/28/LruCache使用笔记/" data-id="ci92udgz10007micxs7uq1ccz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -229,7 +229,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tangsirongit.github.io/2015/04/22/开源项目AndroidEventBus代码学习笔记/" data-id="ci92sb1f20005kncxj5pn5qwf" class="article-share-link">Share</a>
+      <a data-url="http://tangsirongit.github.io/2015/04/22/开源项目AndroidEventBus代码学习笔记/" data-id="ci92udgyy0005micx5gayf2qy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -287,7 +287,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tangsirongit.github.io/2015/04/22/树莓派交叉编译环境搭建-失败/" data-id="ci92sb1ey0001kncxqnegn3fz" class="article-share-link">Share</a>
+      <a data-url="http://tangsirongit.github.io/2015/04/22/树莓派交叉编译环境搭建-失败/" data-id="ci92udgyu0001micx13o8cn1q" class="article-share-link">Share</a>
       
       
     </footer>
@@ -335,7 +335,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tangsirongit.github.io/2015/04/02/我想写一个网络视频播放器/" data-id="ci92sb1ez0002kncxt5ecl7p9" class="article-share-link">Share</a>
+      <a data-url="http://tangsirongit.github.io/2015/04/02/我想写一个网络视频播放器/" data-id="ci92udgyw0002micxxrbfgu8p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IOS-Swift/">IOS  Swift</a></li></ul>
@@ -384,7 +384,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tangsirongit.github.io/2015/04/01/hello-world/" data-id="ci92sb1f30006kncxus2yf7bv" class="article-share-link">Share</a>
+      <a data-url="http://tangsirongit.github.io/2015/04/01/hello-world/" data-id="ci92udgyz0006micxwjbmc4ht" class="article-share-link">Share</a>
       
       
     </footer>
