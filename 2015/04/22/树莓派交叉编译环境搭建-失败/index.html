@@ -1,11 +1,17 @@
-<!DOCTYPE html>
-<html>
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   
-  <title>树莓派交叉编译环境搭建-----失败 | 唐僧De涂鸦</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="有了虚拟机，下面的这一切都可以跳过，权当涂鸦。。。这两天捣腾树莓派的交叉编译环境（crosstool-ng），搞了2个晚上，终于弄好。记录一下。我的系统版本是OSX 10.10.2
+    <title>树莓派交叉编译环境搭建-----失败 | 唐僧De涂鸦</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="TangSir">
+    
+
+    
+    <meta name="description" content="有了虚拟机，下面的这一切都可以跳过，权当涂鸦。。。这两天捣腾树莓派的交叉编译环境（crosstool-ng），搞了2个晚上，终于弄好。记录一下。我的系统版本是OSX 10.10.2
 操作步骤安装软件使用brew安装这些软件包：
 12345678brew tap homebrew/versionsbrew install gcc48brew tap homebrew/dupesbrew instal">
 <meta property="og:type" content="article">
@@ -23,78 +29,86 @@
 <meta name="twitter:description" content="有了虚拟机，下面的这一切都可以跳过，权当涂鸦。。。这两天捣腾树莓派的交叉编译环境（crosstool-ng），搞了2个晚上，终于弄好。记录一下。我的系统版本是OSX 10.10.2
 操作步骤安装软件使用brew安装这些软件包：
 12345678brew tap homebrew/versionsbrew install gcc48brew tap homebrew/dupesbrew instal">
-  
+
+    
     <link rel="alternative" href="/atom.xml" title="唐僧De涂鸦" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-  
-
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
 </head>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">唐僧De涂鸦</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">涂鸦By唐僧</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="q" value="site:http://tangsirongit.github.io"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-树莓派交叉编译环境搭建-失败" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/04/22/树莓派交叉编译环境搭建-失败/" class="article-date">
-  <time datetime="2015-04-22T13:29:26.000Z" itemprop="datePublished">2015-04-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      树莓派交叉编译环境搭建-----失败
-    </h1>
-  
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
+  <body>
+    <header>
       
-        <h1 id="有了虚拟机，下面的这一切都可以跳过，权当涂鸦。。。">有了虚拟机，下面的这一切都可以跳过，权当涂鸦。。。</h1><p>这两天捣腾树莓派的交叉编译环境（crosstool-ng），搞了2个晚上，终于弄好。记录一下。我的系统版本是OSX 10.10.2</p>
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="唐僧De涂鸦" title="唐僧De涂鸦"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="唐僧De涂鸦">唐僧De涂鸦</a></h1>
+				<h2 class="blog-motto">涂鸦By唐僧</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:tangsirongit.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/22/树莓派交叉编译环境搭建-失败/" title="树莓派交叉编译环境搭建-----失败" itemprop="url">树莓派交叉编译环境搭建-----失败</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="TangSir" target="_blank" itemprop="author">TangSir</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-22T13:29:26.000Z" itemprop="datePublished"> 发表于 2015-04-22</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#有了虚拟机，下面的这一切都可以跳过，权当涂鸦。。。"><span class="toc-number">1.</span> <span class="toc-text">有了虚拟机，下面的这一切都可以跳过，权当涂鸦。。。</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#操作步骤"><span class="toc-number">2.</span> <span class="toc-text">操作步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装软件"><span class="toc-number">2.1.</span> <span class="toc-text">安装软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装crosstool-ng"><span class="toc-number">2.2.</span> <span class="toc-text">安装crosstool-ng</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置crosstoll使用GNU_grep"><span class="toc-number">2.3.</span> <span class="toc-text">配置crosstoll使用GNU grep</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建文件系统"><span class="toc-number">2.4.</span> <span class="toc-text">创建文件系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置crosstool-ng"><span class="toc-number">2.5.</span> <span class="toc-text">设置crosstool-ng</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#遇到的问题"><span class="toc-number">3.</span> <span class="toc-text">遇到的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题1"><span class="toc-number">3.1.</span> <span class="toc-text">问题1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题2"><span class="toc-number">3.2.</span> <span class="toc-text">问题2</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="有了虚拟机，下面的这一切都可以跳过，权当涂鸦。。。">有了虚拟机，下面的这一切都可以跳过，权当涂鸦。。。</h1><p>这两天捣腾树莓派的交叉编译环境（crosstool-ng），搞了2个晚上，终于弄好。记录一下。我的系统版本是OSX 10.10.2</p>
 <h1 id="操作步骤">操作步骤</h1><h2 id="安装软件">安装软件</h2><p>使用brew安装这些软件包：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">brew tap homebrew/versions</span><br><span class="line">brew <span class="operator"><span class="keyword">install</span> gcc48</span><br><span class="line">brew tap homebrew/dupes</span><br><span class="line">brew <span class="keyword">install</span> grep</span><br><span class="line">brew <span class="keyword">install</span> gettext</span><br><span class="line">brew link <span class="comment">--force gettext</span></span><br><span class="line">brew <span class="keyword">install</span> ncurses</span><br><span class="line">brew link <span class="comment">--force ncurses</span></span></span><br></pre></td></tr></table></figure>
 <h2 id="安装crosstool-ng">安装crosstool-ng</h2><p>安装crosstool-ng前，要做一点小小的修改：</p>
@@ -116,159 +130,305 @@
 <h2 id="问题2">问题2</h2><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">INFO ]  Retrieving needed toolchain components’ tarballs</span><br><span class="line">[EXTRA]    Retrieving ‘linux-3.12.24’</span><br><span class="line">[<span class="keyword">ERROR</span>]</span><br><span class="line">[<span class="keyword">ERROR</span>]  &gt;&gt;</span><br><span class="line">[<span class="keyword">ERROR</span>]  &gt;&gt;  Build failed <span class="keyword">in</span> step ‘Retrieving needed toolchain components’ tarballs’</span><br><span class="line">[<span class="keyword">ERROR</span>]  &gt;&gt;        called <span class="keyword">in</span> step ‘(top-level)’</span><br><span class="line">[<span class="keyword">ERROR</span>]  &gt;&gt;</span><br><span class="line">[<span class="keyword">ERROR</span>]  &gt;&gt;  <span class="keyword">Error</span> happened <span class="keyword">in</span>: do_kernel_get[scripts/build/kernel/linux.<span class="keyword">sh</span>@21]</span><br><span class="line">[<span class="keyword">ERROR</span>]  &gt;&gt;        called from: main[scripts/crosstool-NG.<span class="keyword">sh</span>@582]</span><br><span class="line">[<span class="keyword">ERROR</span>]  &gt;&gt;</span><br><span class="line">[<span class="keyword">ERROR</span>]  &gt;&gt;  <span class="keyword">For</span> <span class="keyword">more</span> info <span class="keyword">on</span> this <span class="keyword">error</span>, look at the <span class="keyword">file</span>: ‘build.<span class="keyword">log</span>’</span><br><span class="line">[<span class="keyword">ERROR</span>]  &gt;&gt;  There is a <span class="keyword">list</span> of known issues, some with workarounds, <span class="keyword">in</span>:</span><br><span class="line">[<span class="keyword">ERROR</span>]  &gt;&gt;      ‘/usr/<span class="keyword">local</span>/Cellar/crosstool-ng/1.20.0/share/doc/crosstool-ng/<span class="keyword">ct</span>-ng.1.20.0/B - Known issues.txt’</span><br><span class="line">[<span class="keyword">ERROR</span>]</span><br><span class="line">[<span class="keyword">ERROR</span>]  (elapsed: 28:15.99)</span><br></pre></td></tr></table></figure>
 <p>解决：</p>
 <h1 id="参考">参考</h1><p>1、<a href="http://crowding.github.io/blog/2014/04/15/compiling-a-raspberry-pi-kernel-on-osx/" target="_blank" rel="external">Compiling a Raspberry Pi Kernel on OSX</a><br>2、<a href="http://www.jaredwolff.com/blog/cross-compiling-on-mac-osx-for-raspberry-pi/" target="_blank" rel="external">Raspberry Pi — Cross Compiling on Mac OSX</a><br>3、<a href="http://www.unsigned.fr/blog/?p=6" target="_blank" rel="external">BUILDING CROSS COMPILER TOOLS FOR RASPBERRYPI ON MAC OSX</a><br>4、<a href="https://github.com/Kentzo/armv6-rpi-linux-gnueabihf" target="_blank" rel="external">Kentzo</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://tangsirongit.github.io/2015/04/22/树莓派交叉编译环境搭建-失败/" data-id="ci92udgyu0001micx13o8cn1q" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2015/04/22/开源项目AndroidEventBus代码学习笔记/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          开源项目AndroidEventBus代码学习笔记
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2015/04/02/我想写一个网络视频播放器/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">我想写一个网络视频播放器</div>
-    </a>
-  
-</nav>
 
-  
-</article>
+</div>
 
 
 
-<section id="comment">
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://tangsirongit.github.io/2015/04/22/树莓派交叉编译环境搭建-失败/" data-title="树莓派交叉编译环境搭建-----失败 | 唐僧De涂鸦" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
 
-    <h1 class="title">comment</h1>
 
-    <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2015/04/22/树莓派交叉编译环境搭建-失败/" data-title="树莓派交叉编译环境搭建-----失败" data-url="http://tangsirongit.github.io/2015/04/22/树莓派交叉编译环境搭建-失败/"></div>
-    <!-- 多说评论框 end -->
-
-    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-    <script type="text/javascript">
-    var duoshuoQuery = {short_name:"tangsir"};
-    (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0] 
-         || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-    </script>
-    <!-- 多说公共JS代码 end -->
-</section>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IOS-Swift/">IOS  Swift</a><span class="tag-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/IOS-Swift/" style="font-size: NaNpx;">IOS  Swift</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">6</span></li></ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recents</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2015/04/29/LinkedHashMap笔记/">LinkedHashMap笔记</a>
-          </li>
-        
-          <li>
-            <a href="/2015/04/28/LruCache使用笔记/">LruCache使用笔记</a>
-          </li>
-        
-          <li>
-            <a href="/2015/04/22/开源项目AndroidEventBus代码学习笔记/">开源项目AndroidEventBus代码学习笔记</a>
-          </li>
-        
-          <li>
-            <a href="/2015/04/22/树莓派交叉编译环境搭建-失败/">树莓派交叉编译环境搭建-----失败</a>
-          </li>
-        
-          <li>
-            <a href="/2015/04/02/我想写一个网络视频播放器/">我想写一个网络视频播放器</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2015 TangSir<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/04/22/开源项目AndroidEventBus代码学习笔记/" title="开源项目AndroidEventBus代码学习笔记">
+  <strong>上一篇：</strong><br/>
+  <span>
+  开源项目AndroidEventBus代码学习笔记</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/04/02/我想写一个网络视频播放器/"  title="我想写一个网络视频播放器">
+ <strong>下一篇：</strong><br/> 
+ <span>我想写一个网络视频播放器
+</span>
+</a>
+</div>
+
 </nav>
-    
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/04/22/树莓派交叉编译环境搭建-失败/" data-title="树莓派交叉编译环境搭建-----失败" data-url="http://tangsirongit.github.io/2015/04/22/树莓派交叉编译环境搭建-失败/"></div>
+</section>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#有了虚拟机，下面的这一切都可以跳过，权当涂鸦。。。"><span class="toc-number">1.</span> <span class="toc-text">有了虚拟机，下面的这一切都可以跳过，权当涂鸦。。。</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#操作步骤"><span class="toc-number">2.</span> <span class="toc-text">操作步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装软件"><span class="toc-number">2.1.</span> <span class="toc-text">安装软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装crosstool-ng"><span class="toc-number">2.2.</span> <span class="toc-text">安装crosstool-ng</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置crosstoll使用GNU_grep"><span class="toc-number">2.3.</span> <span class="toc-text">配置crosstoll使用GNU grep</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建文件系统"><span class="toc-number">2.4.</span> <span class="toc-text">创建文件系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置crosstool-ng"><span class="toc-number">2.5.</span> <span class="toc-text">设置crosstool-ng</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#遇到的问题"><span class="toc-number">3.</span> <span class="toc-text">遇到的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题1"><span class="toc-number">3.1.</span> <span class="toc-text">问题1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题2"><span class="toc-number">3.2.</span> <span class="toc-text">问题2</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
+ 
   </div>
-</body>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/IOS-Swift/" title="IOS  Swift">IOS  Swift<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m TangSir...... <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="TangSir">TangSir</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"tangsir"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
 </html>
